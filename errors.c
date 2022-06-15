@@ -39,7 +39,7 @@ size_t invalid_opcode(unsigned int l_num, char *opcode)
  */
 size_t line_error(unsigned int l_num, char *message)
 {
-	fprintf(stderr, "L%d: %s\n", l_num, message);
+	fprintf(stderr, "L%u: %s\n", l_num, message);
 	return (EXIT_FAILURE);
 }
 
@@ -56,6 +56,6 @@ size_t line_error(unsigned int l_num, char *message)
  */
 size_t usage_error(unsigned int l_num, char *opcode, char *message)
 {
-	fprintf(stderr, "L%d: usage: %s %s\n", l_num, opcode, message);
+	fprintf(stderr, "L%u: usage: %s %s\n", l_num, opcode, message);
 	return (EXIT_FAILURE);
 }
