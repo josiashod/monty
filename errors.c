@@ -60,3 +60,18 @@ size_t usage_error(unsigned int l_num, char *opcode, char *message)
 	fprintf(stderr, "L%u: usage: %s %s\n", l_num, opcode, message);
 	return (EXIT_FAILURE);
 }
+
+/**
+ * stack_short_error - print the error find
+ * on a line where the stack is too short
+ * @l_num: the line number where
+ * the instruction appears.
+ * @opcode: the opcode of the function
+ *
+ * Return: always EXIT_FAILURE
+ */
+size_t stack_short_error(unsigned int l_num, char *opcode)
+{
+	fprintf(stderr, "L%u: can't %s, stack too short\n", l_num, opcode);
+	return (EXIT_FAILURE);
+}

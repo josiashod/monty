@@ -48,6 +48,9 @@ void (*get_op_func(char *opcode))(stack_t **, unsigned int)
 		{"pall", stack_pall},
 		{"pint", stack_pint},
 		{"pop", stack_pop},
+		{"add", stack_add},
+		{"nop", stack_nop},
+		{"sub", stack_sub},
 		{NULL, NULL}
 	};
 

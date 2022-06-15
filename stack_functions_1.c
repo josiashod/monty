@@ -94,3 +94,28 @@ void stack_pop(stack_t **stack, unsigned int line_number)
 	*stack = (*stack)->next;
 	free(tmp);
 }
+
+/**
+ * stack_add - adds the top two elements of the stack.
+ *
+ * @stack: pointer to the head of the stack
+ * @line_number: the line number where the
+ * instruction appears.
+ */
+void stack_add(stack_t **stack, unsigned int line_number)
+{
+	if (!stack || !(*stack))
+	{
+		error = stack_short_error(line_number, "add");
+		return;
+	}
+
+	if (!(*stack) || !(*stack)->next)/* check if there is at least two el */
+	{
+		error = stack_short_error(line_number, "add");
+		return;
+	}
+
+	(*stack)->next->n += (*stack)->n;
+	stack_pop(stack, line_number);
+}

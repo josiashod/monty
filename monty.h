@@ -53,6 +53,7 @@ size_t _stderr(char *message);
 size_t invalid_opcode(unsigned int l_num, char *opcode);
 size_t usage_error(unsigned int l_num, char *opcode, char *message);
 size_t line_error(unsigned int l_num, char *message);
+size_t stack_short_error(unsigned int l_num, char *message);
 
 /* RUN */
 void (*get_op_func(char *opcode))(stack_t **, unsigned int);
@@ -64,5 +65,7 @@ void stack_push(stack_t **stack, unsigned int line_number);
 void stack_pall(stack_t **stack, unsigned int line_number);
 void stack_pint(stack_t **stack, unsigned int line_number);
 void stack_pop(stack_t **stack, unsigned int line_number);
-
+void stack_nop(stack_t **stack, unsigned int line_number)
+void stack_add(stack_t **stack, unsigned int line_number);
+void stack_sub(stack_t **stack, unsigned int line_number);
 #endif /* MONTY_H */
