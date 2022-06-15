@@ -65,7 +65,7 @@ void (*get_op_func(char *opcode))(stack_t **, unsigned int)
 size_t run(FILE *script)
 {
 	char *line = NULL;
-	size_t len = 0, exit_status = EXIT_SUCCESS, line_number = 1;
+	size_t len = 0, exit_status = EXIT_SUCCESS, line_number = 0;
 	stack_t *stack = NULL;
 	void (*op_func)(stack_t **stack, unsigned int line_number);
 
@@ -84,10 +84,10 @@ size_t run(FILE *script)
 		op_func = get_op_func(args[0]);
 		if (op_func == NULL)
 		{
-			exit_status = invalid_opcode(line_number - 1, args[0]);
+			exit_status = invalid_opcode(line_number, args[0]);
 			break;
 		}
-		op_func(&stack, line_number - 1);
+		op_func(&stack, line_number);
 		if (error == EXIT_FAILURE)
 		{
 			exit_status = error;
