@@ -11,7 +11,7 @@ void free_args(void)
 	{
 		for (i = 0; args[i]; i++)
 			free(args[i]);
-
+		free(args);
 	}
 }
 
@@ -44,12 +44,13 @@ void (*get_op_func(char *opcode))(stack_t **, unsigned int)
 {
 	int i = 0;
 	instruction_t ops[] = {
+		{"push", stack_push},
+		{"pall", stack_pall},
 		{NULL, NULL}
 	};
 
-	while (ops[i].opcode != NULL && !strcmp(ops[i].opcode, opcode))
+	while (ops[i].opcode != NULL && strcmp(ops[i].opcode, opcode))
 		i++;
-
 	return (ops[i].f);
 }
 
@@ -82,21 +83,24 @@ int run(FILE *script)
 				break;
 			}
 		}
-
 		op_func = get_op_func(args[0]);
 		if (op_func == NULL)
 		{
 			exit_status = invalid_opcode(line_number, args[0]);
-			free_args();
 			break;
 		}
 		else
-		{}
-
+			op_func(&stack, line_number);
+		if (error == EXIT_FAILURE)
+			break;
+		error = EXIT_SUCCESS;
 		line_number++;
 		free_args();
 	}
 
+	if (args != NULL)
+		free_args();
 	free(line);
+	free_stack(&stack);
 	return (exit_status);
 }

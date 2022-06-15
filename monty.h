@@ -11,6 +11,7 @@
 #define DELIMS " \n\t\a\b"
 
 extern char **args;
+extern int error;
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -45,13 +46,20 @@ typedef struct instruction_s
 /* HELPERS */
 int is_delim(char ch, char *delim);
 char **strtow(char *str, char *delim);
+int is_int(char *str);
 
 /* ERRORS */
 void _stderr(char *message);
 size_t invalid_opcode(int l_num, char *opcode);
+size_t usage_error(int l_num, char *opcode, char *message);
 
 /* RUN */
 void (*get_op_func(char *opcode))(stack_t **, unsigned int);
 int run (FILE *script);
+
+/* STACK FUNCTIONS */
+void free_stack(stack_t **stack);
+void stack_push(stack_t **stack, unsigned int line_number);
+void stack_pall(stack_t **stack, unsigned int line_number);
 
 #endif /* MONTY_H */

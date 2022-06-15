@@ -1,6 +1,7 @@
 #include "monty.h"
 
 char **args = NULL;
+int error = EXIT_SUCCESS;
 
 /**
  * main - the main entry of the monty
@@ -26,7 +27,8 @@ int main(int argc, char **argv)
 	if (!script)
 	{
 		_stderr("Error: Can't open file ");
-		_stderr(strcat(argv[1], "\n"));
+		_stderr(argv[1]);
+		_stderr("\n");
 		exit(EXIT_FAILURE);
 	}
 
