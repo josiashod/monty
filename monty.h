@@ -52,6 +52,7 @@ int is_int(char *str);
 void _stderr(char *message);
 size_t invalid_opcode(int l_num, char *opcode);
 size_t usage_error(int l_num, char *opcode, char *message);
+size_t line_error(int l_num, char *message);
 
 /* RUN */
 void (*get_op_func(char *opcode))(stack_t **, unsigned int);

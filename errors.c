@@ -29,6 +29,21 @@ size_t invalid_opcode(int l_num, char *opcode)
 }
 
 /**
+ * line_error - print the error find
+ * on a line
+ * @l_num: the line number where
+ * the instruction appears.
+ * @message: the error message
+ *
+ * Return: always EXIT_FAILURE
+ */
+size_t line_error(int l_num, char *message)
+{
+	fprintf(stderr, "L%d: %s\n", l_num, message);
+	return (EXIT_FAILURE);
+}
+
+/**
  * usage_error - print the invalid
  * usage error for an opcode
  *

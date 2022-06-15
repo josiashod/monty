@@ -65,6 +65,11 @@ void stack_pall(stack_t **stack, unsigned int line_number)
  */
 void stack_pint(stack_t **stack, unsigned int line_number)
 {
+	if (!stack || !(*stack))
+	{
+		error = line_error(line_number, "can't pint, stack empty");
+		return;
+	}
 	printf("%d\n", (*stack)->n);
 	(void)line_number;
 }
