@@ -55,7 +55,7 @@ size_t usage_error(int l_num, char *opcode, char *message);
 
 /* RUN */
 void (*get_op_func(char *opcode))(stack_t **, unsigned int);
-int run (FILE *script);
+size_t run (FILE *script);
 
 /* STACK FUNCTIONS */
 void free_stack(stack_t **stack);

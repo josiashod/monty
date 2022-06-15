@@ -7,7 +7,7 @@ void free_args(void)
 {
 	int i;
 
-	if (args != NULL)
+	if (args)
 	{
 		for (i = 0; args[i]; i++)
 			free(args[i]);
@@ -61,7 +61,7 @@ void (*get_op_func(char *opcode))(stack_t **, unsigned int)
  * Return: On success return EXIT_SUCCESS
  * otherwise return a failure code
  */
-int run(FILE *script)
+size_t run(FILE *script)
 {
 	char *line = NULL;
 	size_t len = 0, exit_status = EXIT_SUCCESS, line_number = 1;
@@ -70,36 +70,33 @@ int run(FILE *script)
 
 	while (getline(&line, &len, script) != -1)
 	{
+		line_number++;
 		args = strtow(line, DELIMS);
-		if (!args)
+		if (args == NULL)
 		{
 			if (is_empty_line(line))
 				continue;
-			else
-			{
-				_stderr("Error: malloc failed\n");
-				exit_status = EXIT_FAILURE;
-				break;
-			}
+			_stderr("Error: malloc failed\n");
+			exit_status = EXIT_FAILURE;
+			break;
 		}
 		op_func = get_op_func(args[0]);
 		if (op_func == NULL)
 		{
-			exit_status = invalid_opcode(line_number, args[0]);
-			free_args();
+			exit_status = invalid_opcode(line_number - 1, args[0]);
 			break;
 		}
 		else
-			op_func(&stack, line_number);
-		if (error == EXIT_FAILURE)
 		{
-			free_args();
-			break;
+			op_func(&stack, line_number - 1);
 		}
+		if (error == EXIT_FAILURE)
+			break;
 		error = EXIT_SUCCESS;
-		line_number++;
-		free_args();
+		/* free_args(); */
 	}
+	if (args != NULL)
+		free_args();
 	free(line);
 	free_stack(&stack);
 	return (exit_status);

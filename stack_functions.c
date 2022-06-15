@@ -23,6 +23,7 @@ void stack_push(stack_t **stack, unsigned int line_number)
 	if (args[1] == NULL || !is_int(args[1]))
 	{
 		error = usage_error(line_number, "push", "integer");
+		free(new_stack);
 		return;
 	}
 

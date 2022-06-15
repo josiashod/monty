@@ -14,7 +14,7 @@ int error = EXIT_SUCCESS;
 int main(int argc, char **argv)
 {
 	FILE *script;
-	int exit_status = 0;
+	size_t exit_status = 0;
 
 	if (argc != 2)
 	{
