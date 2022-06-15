@@ -31,6 +31,7 @@ int main(int argc, char **argv)
 		_stderr("\n");
 		exit(EXIT_FAILURE);
 	}
+fclose(script):
 
 	exit_status = run(script);
 	exit(exit_status);
