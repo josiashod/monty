@@ -85,9 +85,13 @@ size_t run(FILE *script)
 		{
 			if (is_empty_line(line))
 				continue;
-			_stderr("Error: malloc failed\n");
-			free_stack(&stack);
-			return (EXIT_FAILURE);
+			exit_status = _stderr("Error: malloc failed\n");
+			break;
+		}
+		if (args[0][0] == '#') /* handle comment */
+		{
+			free_args();
+			continue;
 		}
 		op_func = get_op_func(args[0]);
 		if (op_func == NULL)
@@ -107,8 +111,6 @@ size_t run(FILE *script)
 		free_args();
 	}
 	free_stack(&stack);
-	if (line && *line == 0)
-		exit_status = _stderr("Error: malloc failed\n");
 	free(line);
 	return (exit_status);
 }
