@@ -71,7 +71,6 @@ void stack_pint(stack_t **stack, unsigned int line_number)
 		return;
 	}
 	printf("%d\n", (*stack)->n);
-	(void)line_number;
 }
 
 /**
@@ -94,5 +93,4 @@ void stack_pop(stack_t **stack, unsigned int line_number)
 		(*stack)->next->prev = NULL;
 	*stack = (*stack)->next;
 	free(tmp);
-	(void)line_number;
 }
