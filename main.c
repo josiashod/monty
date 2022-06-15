@@ -1,7 +1,7 @@
 #include "monty.h"
 
 char **args = NULL;
-int error = EXIT_SUCCESS;
+size_t error = EXIT_SUCCESS;
 
 /**
  * main - the main entry of the monty

@@ -75,7 +75,7 @@ size_t run(FILE *script)
 	char *line = NULL;
 	size_t len = 0, exit_status = EXIT_SUCCESS, line_number = 0;
 	stack_t *stack = NULL;
-	void (*op_func)(stack_t **stack, unsigned int line_number);
+	void (*op_func)(stack_t **, unsigned int);
 
 	while (getline(&line, &len, script) != -1)
 	{
@@ -93,8 +93,8 @@ size_t run(FILE *script)
 		if (op_func == NULL)
 		{
 			exit_status = invalid_opcode(line_number, args[0]);
-			free_stack(&stack);
 			free_args();
+			free_stack(&stack);
 			break;
 		}
 		op_func(&stack, line_number);
@@ -106,9 +106,9 @@ size_t run(FILE *script)
 		}
 		free_args();
 	}
+	free_stack(&stack);
 	if (line && *line == 0)
 		exit_status = _stderr("Error: malloc failed\n");
 	free(line);
-	free_stack(&stack);
 	return (exit_status);
 }

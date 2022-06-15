@@ -11,7 +11,7 @@
 #define DELIMS " \n\t\a\b"
 
 extern char **args;
-extern int error;
+extern size_t error;
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -60,17 +60,17 @@ void (*get_op_func(char *opcode))(stack_t **, unsigned int);
 size_t run (FILE *script);
 
 /* STACK FUNCTIONS */
-void free_stack(stack_t **stack);
-void stack_push(stack_t **stack, unsigned int line_number);
-void stack_pall(stack_t **stack, unsigned int line_number);
-void stack_pint(stack_t **stack, unsigned int line_number);
-void stack_pop(stack_t **stack, unsigned int line_number);
-void stack_nop(stack_t **stack, unsigned int line_number);
-void stack_add(stack_t **stack, unsigned int line_number);
-void stack_sub(stack_t **stack, unsigned int line_number);
-void stack_div(stack_t **stack, unsigned int line_number);
-void stack_mul(stack_t **stack, unsigned int line_number);
-void stack_mod(stack_t **stack, unsigned int line_number);
-void stack_swap(stack_t **stack, unsigned int line_number);
+void free_stack(stack_t **);
+void stack_push(stack_t **, unsigned int);
+void stack_pall(stack_t **, unsigned int);
+void stack_pint(stack_t **, unsigned int);
+void stack_pop(stack_t **, unsigned int);
+void stack_nop(stack_t **, unsigned int);
+void stack_add(stack_t **, unsigned int);
+void stack_sub(stack_t **, unsigned int);
+void stack_div(stack_t **, unsigned int);
+void stack_mul(stack_t **, unsigned int);
+void stack_mod(stack_t **, unsigned int);
+void stack_swap(stack_t **, unsigned int);
 
 #endif /* MONTY_H */
