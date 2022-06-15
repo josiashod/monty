@@ -86,6 +86,7 @@ size_t run(FILE *script)
 		if (op_func == NULL)
 		{
 			exit_status = invalid_opcode(line_number, args[0]);
+			free_stack(&stack);
 			break;
 		}
 		op_func(&stack, line_number);
