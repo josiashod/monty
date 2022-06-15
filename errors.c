@@ -6,9 +6,10 @@
  * stderr
  * @message: The error message
  */
-void _stderr(char *message)
+size_t _stderr(char *message)
 {
 	fprintf(stderr, "%s", message);
+	return (EXIT_FAILURE);
 }
 
 

@@ -49,7 +49,7 @@ char **strtow(char *str, char *delim);
 int is_int(char *str);
 
 /* ERRORS */
-void _stderr(char *message);
+size_t _stderr(char *message);
 size_t invalid_opcode(unsigned int l_num, char *opcode);
 size_t usage_error(unsigned int l_num, char *opcode, char *message);
 size_t line_error(unsigned int l_num, char *message);

@@ -87,6 +87,7 @@ size_t run(FILE *script)
 		{
 			exit_status = invalid_opcode(line_number, args[0]);
 			free_stack(&stack);
+			free_args();
 			break;
 		}
 		op_func(&stack, line_number);
@@ -99,10 +100,7 @@ size_t run(FILE *script)
 		free_args();
 	}
 	if (line && *line == 0)
-	{
-		exit_status = EXIT_FAILURE;
-		_stderr("Error: malloc failed\n");
-	}
+		exit_status = _stderr("Error: malloc failed\n");
 	free(line);
 	free_stack(&stack);
 	return (exit_status);
