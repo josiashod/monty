@@ -73,3 +73,26 @@ void stack_pint(stack_t **stack, unsigned int line_number)
 	printf("%d\n", (*stack)->n);
 	(void)line_number;
 }
+
+/**
+ * stack_pop - removes the top element of the stack.
+ *
+ * @stack: pointer to the head of the stack
+ * @line_number: the line number where the
+ * instruction appears.
+ */
+void stack_pop(stack_t **stack, unsigned int line_number)
+{
+	stack_t *tmp = *stack;
+
+	if (!stack || !(*stack))
+	{
+		error = line_error(line_number, "can't pop an stack empty");
+		return;
+	}
+	if ((*stack)->next)
+		(*stack)->next->prev = NULL;
+	*stack = (*stack)->next;
+	free(tmp);
+	(void)line_number;
+}
