@@ -19,6 +19,7 @@ void free_args(void)
  * is_empty_line - check if the current line contains only
  * delimiter
  * @line: the line
+ * @delims: the delimiters
  *
  * Return: 1 on success, 0 on failure
  */
@@ -82,7 +83,7 @@ size_t run(FILE *script)
 		args = strtow(line, DELIMS);
 		if (args == NULL)
 		{
-			if (is_empty_line(line))
+			if (is_empty_line(line, DELIMS))
 				continue;
 			_stderr("Error: malloc failed\n");
 			exit_status = EXIT_FAILURE;
