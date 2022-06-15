@@ -11,7 +11,6 @@ void stack_nop(stack_t **stack, unsigned int line_number)
 {
 	(void)stack;
 	(void)line_number;
-	return;
 }
 
 
@@ -92,5 +91,36 @@ void stack_mul(stack_t **stack, unsigned int line_number)
 	}
 
 	(*stack)->next->n *= (*stack)->n;
+	stack_pop(stack, line_number);
+}
+
+/**
+ * stack_mod - multiplies the top two elements of the stack.
+ *
+ * @stack: pointer to the head of the stack
+ * @line_number: the line number where the
+ * instruction appears.
+ */
+void stack_mod(stack_t **stack, unsigned int line_number)
+{
+	if (!stack || !(*stack))
+	{
+		error = stack_short_error(line_number, "mod");
+		return;
+	}
+
+	if (!(*stack) || !(*stack)->next)/* check if there is at least two el */
+	{
+		error = stack_short_error(line_number, "mod");
+		return;
+	}
+
+	if (!(*stack)->n)
+	{
+		error = line_error(line_number, "division by zero");
+		return;
+	}
+
+	(*stack)->next->n %= (*stack)->n;
 	stack_pop(stack, line_number);
 }
