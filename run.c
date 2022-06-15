@@ -87,17 +87,15 @@ size_t run(FILE *script)
 			exit_status = invalid_opcode(line_number - 1, args[0]);
 			break;
 		}
-		else
-		{
-			op_func(&stack, line_number - 1);
-		}
+		op_func(&stack, line_number - 1);
 		if (error == EXIT_FAILURE)
+		{
+			exit_status = error;
+			free_args();
 			break;
-		error = EXIT_SUCCESS;
-		/*free_args();*/
-	}
-	if (args != NULL)
+		}
 		free_args();
+	}
 	free(line);
 	free_stack(&stack);
 	return (exit_status);
