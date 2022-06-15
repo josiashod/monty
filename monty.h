@@ -1,6 +1,17 @@
 #ifndef MONTY_H
 #define MONTY_H
 
+#define _GNU_SOURCE
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+#include <sys/types.h>
+
+#define DELIMS " \n\t\a\b"
+
+extern char **args;
+
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -31,4 +42,16 @@ typedef struct instruction_s
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-#endif MONTY_H
+/* HELPERS */
+int is_delim(char ch, char *delim);
+char **strtow(char *str, char *delim);
+
+/* ERRORS */
+void _stderr(char *message);
+size_t invalid_opcode(int l_num, char *opcode);
+
+/* RUN */
+void (*get_op_func(char *opcode))(stack_t **, unsigned int);
+int run (FILE *script);
+
+#endif /* MONTY_H */

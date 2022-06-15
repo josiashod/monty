@@ -24,6 +24,6 @@ void _stderr(char *message)
  */
 size_t invalid_opcode(int l_num, char *opcode)
 {
-	fprintf(stderr, "L%d: unknown instruction %s", l_num, opcode);
+	fprintf(stderr, "L%d: unknown instruction %s\n", l_num, opcode);
 	return (EXIT_FAILURE);
 }
