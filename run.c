@@ -19,25 +19,17 @@ void free_args(void)
  * is_empty_line - check if the current line contains only
  * delimiter
  * @line: the line
- * @delims: the delimiters
  *
  * Return: 1 on success, 0 on failure
  */
-int is_empty_line(char *line, char *delims)
+int is_empty_line(char *line)
 {
-	int i, j;
-
-	for (i = 0; line[i]; i++)
+	while (*line)
 	{
-		for (j = 0; delims[j]; j++)
-		{
-			if (line[i] == delims[j])
-				break;
-		}
-		if (delims[j] == '\0')
+		if (!is_delim(*line, DELIMS))
 			return (0);
+		line++;
 	}
-
 	return (1);
 }
 
@@ -83,7 +75,7 @@ size_t run(FILE *script)
 		args = strtow(line, DELIMS);
 		if (args == NULL)
 		{
-			if (is_empty_line(line, DELIMS))
+			if (is_empty_line(line))
 				continue;
 			_stderr("Error: malloc failed\n");
 			exit_status = EXIT_FAILURE;
@@ -103,6 +95,11 @@ size_t run(FILE *script)
 			break;
 		}
 		free_args();
+	}
+	if (line && *line == 0)
+	{
+		exit_status = EXIT_FAILURE;
+		_stderr("Error: malloc failed\n");
 	}
 	free(line);
 	free_stack(&stack);
