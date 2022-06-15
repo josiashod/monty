@@ -5,6 +5,8 @@
  * _stderr - print error message on
  * stderr
  * @message: The error message
+ *
+ * Return: always EXIT_FAILURE
  */
 size_t _stderr(char *message)
 {
