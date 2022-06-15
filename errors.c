@@ -41,6 +41,6 @@ size_t invalid_opcode(int l_num, char *opcode)
  */
 size_t usage_error(int l_num, char *opcode, char *message)
 {
-	fprintf(stderr, "L%d: usage %s %s\n", l_num, opcode, message);
+	fprintf(stderr, "L%d: usage: %s %s\n", l_num, opcode, message);
 	return (EXIT_FAILURE);
 }

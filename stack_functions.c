@@ -54,3 +54,17 @@ void stack_pall(stack_t **stack, unsigned int line_number)
 	}
 	(void)line_number;
 }
+
+/**
+ * stack_pint - prints the value at the top of the stack,
+ * followed by a new line.
+ *
+ * @stack: pointer to the head of the stack
+ * @line_number: the line number where the
+ * instruction appears.
+ */
+void stack_pint(stack_t **stack, unsigned int line_number)
+{
+	printf("%d\n", (*stack)->n);
+	(void)line_number;
+}

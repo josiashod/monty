@@ -61,5 +61,6 @@ size_t run (FILE *script);
 void free_stack(stack_t **stack);
 void stack_push(stack_t **stack, unsigned int line_number);
 void stack_pall(stack_t **stack, unsigned int line_number);
+void stack_pint(stack_t **stack, unsigned int line_number);
 
 #endif /* MONTY_H */

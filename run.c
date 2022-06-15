@@ -9,7 +9,7 @@ void free_args(void)
 
 	if (args)
 	{
-		for (i = 0; args[i]; i++)
+		for (i = 0; args[i] != NULL; i++)
 			free(args[i]);
 		free(args);
 	}
@@ -46,6 +46,7 @@ void (*get_op_func(char *opcode))(stack_t **, unsigned int)
 	instruction_t ops[] = {
 		{"push", stack_push},
 		{"pall", stack_pall},
+		{"pint", stack_pint},
 		{NULL, NULL}
 	};
 
@@ -93,7 +94,7 @@ size_t run(FILE *script)
 		if (error == EXIT_FAILURE)
 			break;
 		error = EXIT_SUCCESS;
-		/* free_args(); */
+		/*free_args();*/
 	}
 	if (args != NULL)
 		free_args();
