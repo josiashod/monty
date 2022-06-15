@@ -16,20 +16,27 @@ void free_args(void)
 }
 
 /**
- * is_empty_line - check if the contain only
+ * is_empty_line - check if the current line contains only
  * delimiter
  * @line: the line
  *
  * Return: 1 on success, 0 on failure
  */
-int is_empty_line(char *line)
+int is_empty_line(char *line, char *delims)
 {
-	while (*line)
+	int i, j;
+
+	for (i = 0; line[i]; i++)
 	{
-		if (!is_delim(*line, DELIMS))
+		for (j = 0; delims[j]; j++)
+		{
+			if (line[i] == delims[j])
+				break;
+		}
+		if (delims[j] == '\0')
 			return (0);
-		line++;
 	}
+
 	return (1);
 }
 
