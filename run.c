@@ -77,9 +77,8 @@ size_t run(FILE *script)
 	stack_t *stack = NULL;
 	void (*op_func)(stack_t **, unsigned int);
 
-	while (getline(&line, &len, script) != -1)
+	for (line_number = 1; getline(&line, &len, script) != -1; line_number++)
 	{
-		line_number++;
 		args = strtow(line, DELIMS);
 		if (args == NULL)
 		{
