@@ -73,5 +73,6 @@ void stack_mul(stack_t **, unsigned int);
 void stack_mod(stack_t **, unsigned int);
 void stack_swap(stack_t **, unsigned int);
 void stack_pchar(stack_t **, unsigned int);
+void stack_pstr(stack_t **, unsigned int);
 
 #endif /* MONTY_H */
