@@ -43,7 +43,7 @@ int is_empty_line(char *line)
 void (*get_op_func(char *opcode))(stack_t **, unsigned int)
 {
 	int i = 0;
-	instruction_t ops[] = {
+	static instruction_t ops[] = {
 		{"push", stack_push},
 		{"pall", stack_pall},
 		{"pint", stack_pint},
@@ -81,6 +81,8 @@ size_t run(FILE *script)
 
 	for (line_number = 1; getline(&line, &len, script) != -1; line_number++)
 	{
+		if (line && line[0] == '#') /* handle comment  */
+			continue;
 		args = strtow(line, DELIMS);
 		if (args == NULL)
 		{
@@ -88,11 +90,6 @@ size_t run(FILE *script)
 				continue;
 			exit_status = _stderr("Error: malloc failed\n");
 			break;
-		}
-		if (args[0][0] == '#') /* handle comment */
-		{
-			free_args();
-			continue;
 		}
 		op_func = get_op_func(args[0]);
 		if (op_func == NULL)
