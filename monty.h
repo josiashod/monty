@@ -77,5 +77,6 @@ void stack_pchar(stack_t **, unsigned int);
 void stack_pstr(stack_t **, unsigned int);
 void stack_rotl(stack_t **, unsigned int);
 void stack_rotr(stack_t **, unsigned int);
+void queue_push(stack_t **, unsigned int);
 
 #endif /* MONTY_H */

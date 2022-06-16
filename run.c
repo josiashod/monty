@@ -59,8 +59,15 @@ void (*get_op_func(char *opcode))(stack_t **, unsigned int)
 		{"pstr", stack_pstr},
 		{"rotl", stack_rotl},
 		{"rotr", stack_rotr},
+		{"queue", stack_nop},
+		{"stack", stack_nop},
 		{NULL, NULL}
 	};
+
+	if (!strcmp("queue", opcode))
+		ops[0].f = queue_push;
+	else if (!strcmp("stack", opcode))
+		ops[0].f = stack_push;
 
 	while (ops[i].opcode != NULL && strcmp(ops[i].opcode, opcode))
 		i++;
