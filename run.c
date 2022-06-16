@@ -55,6 +55,7 @@ void (*get_op_func(char *opcode))(stack_t **, unsigned int)
 		{"mul", stack_mul},
 		{"mod", stack_mod},
 		{"swap", stack_swap},
+		{"pchar", stack_pchar},
 		{NULL, NULL}
 	};
 
