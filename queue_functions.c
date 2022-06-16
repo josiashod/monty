@@ -39,5 +39,4 @@ void queue_push(stack_t **stack, unsigned int line_number)
 		new_stack->prev = dlist;
 		dlist->next = new_stack;
 	}
-	return;
 }
