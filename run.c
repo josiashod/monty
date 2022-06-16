@@ -57,6 +57,8 @@ void (*get_op_func(char *opcode))(stack_t **, unsigned int)
 		{"swap", stack_swap},
 		{"pchar", stack_pchar},
 		{"pstr", stack_pstr},
+		{"rotl", stack_rotl},
+		{"rotr", stack_rotr},
 		{NULL, NULL}
 	};
 
