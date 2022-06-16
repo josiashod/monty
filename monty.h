@@ -7,6 +7,7 @@
 #include <string.h>
 #include <unistd.h>
 #include <sys/types.h>
+#include <ctype.h>
 
 #define DELIMS " \n\t\a\b"
 

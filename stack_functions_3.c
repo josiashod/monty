@@ -44,7 +44,7 @@ void stack_pchar(stack_t **stack, unsigned int line_number)
 		return;
 	}
 
-	if ((*stack)->n < 0 || (*stack)->n > 127)/* check if is out of range */
+	if (!isascii((*stack)->n))/* check if is out of range */
 	{
 		error = line_error(line_number, "can't pchar, value out of range");
 		return;
@@ -65,7 +65,7 @@ void stack_pstr(stack_t **stack, unsigned int line_number)
 {
 	stack_t *tmp = *stack;
 
-	while (tmp && tmp->n && (tmp->n > 0 || tmp->n <= 127))
+	while (tmp && tmp->n && isascii((*stack)->n))
 	{
 		printf("%c", tmp->n);
 		tmp = tmp->next;
